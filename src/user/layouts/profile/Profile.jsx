@@ -1,9 +1,10 @@
-import React, { Component } from 'react'
-import ProfileFormContainer from '../../ui/profileform/ProfileFormContainer'
+/* eslint react/prefer-stateless-function: 'off' */
+import React, { Component } from 'react';
+import ProfileFormContainer from '../../ui/profileform/ProfileFormContainer';
 
 class Profile extends Component {
   render() {
-    return(
+    return (
       <main className="container">
         <div className="pure-g">
           <div className="pure-u-1-1">
@@ -13,8 +14,8 @@ class Profile extends Component {
           </div>
         </div>
       </main>
-    )
+    );
   }
 }
 
-export default Profile
+export default Profile;
