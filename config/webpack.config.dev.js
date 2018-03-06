@@ -43,7 +43,7 @@ module.exports = {
     // We ship a few polyfills by default:
     require.resolve('./polyfills'),
     // Finally, this is your app's code:
-    paths.appIndexJs,
+    paths.appIndexJs
     // We include the app code last so that if there is a runtime error during
     // initialization, it doesn't blow up the WebpackDevServer client, and
     // changing JS code would still trigger a refresh.
@@ -58,7 +58,7 @@ module.exports = {
     // containing code from all our entry points, and the Webpack runtime.
     filename: 'static/js/bundle.js',
     // This is the URL that app is served from. We use "/" in development.
-    publicPath,
+    publicPath: publicPath
   },
   resolve: {
     // This allows you to set a fallback for where Webpack should look for modules.
@@ -75,8 +75,8 @@ module.exports = {
     alias: {
       // Support React Native Web
       // https://www.smashingmagazine.com/2016/08/a-glimpse-into-the-future-with-react-native-for-web/
-      'react-native': 'react-native-web',
-    },
+      'react-native': 'react-native-web'
+    }
   },
 
   module: {
@@ -87,7 +87,7 @@ module.exports = {
         test: /\.(js|jsx)$/,
         loader: 'eslint',
         include: paths.appSrc,
-      },
+      }
     ],
     loaders: [
       // Default loader: load all assets that are not handled
@@ -112,13 +112,13 @@ module.exports = {
           /\.json$/,
           /\.woff$/,
           /\.woff2$/,
-          /\.(ttf|svg|eot)$/,
+          /\.(ttf|svg|eot)$/
         ],
         loader: 'url',
         query: {
           limit: 10000,
-          name: 'static/media/[name].[hash:8].[ext]',
-        },
+          name: 'static/media/[name].[hash:8].[ext]'
+        }
       },
       // Process JS with Babel.
       {
@@ -130,8 +130,8 @@ module.exports = {
           // This is a feature of `babel-loader` for webpack (not Babel itself).
           // It enables caching results in ./node_modules/.cache/babel-loader/
           // directory for faster rebuilds.
-          cacheDirectory: true,
-        },
+          cacheDirectory: true
+        }
       },
       // "postcss" loader applies autoprefixer to our CSS.
       // "css" loader resolves paths in CSS and adds assets as dependencies.
@@ -140,43 +140,43 @@ module.exports = {
       // in development "style" loader enables hot editing of CSS.
       {
         test: /\.css$/,
-        loader: 'style!css?importLoaders=1!postcss',
+        loader: 'style!css?importLoaders=1!postcss'
       },
       // JSON is not enabled by default in Webpack but both Node and Browserify
       // allow it implicitly so we also enable it.
       {
         test: /\.json$/,
-        loader: 'json',
+        loader: 'json'
       },
       // "file" loader for svg
       {
         test: /\.svg$/,
         loader: 'file',
         query: {
-          name: 'static/media/[name].[hash:8].[ext]',
-        },
+          name: 'static/media/[name].[hash:8].[ext]'
+        }
       },
       // "file" loader for fonts
       {
         test: /\.woff$/,
         loader: 'file',
         query: {
-          name: 'fonts/[name].[hash].[ext]',
-        },
+          name: 'fonts/[name].[hash].[ext]'
+        }
       },
       {
         test: /\.woff2$/,
         loader: 'file',
         query: {
-          name: 'fonts/[name].[hash].[ext]',
-        },
+          name: 'fonts/[name].[hash].[ext]'
+        }
       },
       {
         test: /\.(ttf|eot)$/,
         loader: 'file',
         query: {
-          name: 'fonts/[name].[hash].[ext]',
-        },
+          name: 'fonts/[name].[hash].[ext]'
+        }
       },
       // Truffle solidity loader to watch for changes in Solitiy files and hot
       // reload contracts with webpack.
@@ -184,15 +184,15 @@ module.exports = {
       // CURRENTLY REMOVED DUE TO INCOMPATIBILITY WITH TRUFFLE 3
       // Compile and migrate contracts manually.
       //
-      /* {
+      /*{
         test: /\.sol$/,
         loader: 'truffle-solidity?network_id=123'
-      } */
-    ],
+      }*/
+    ]
   },
 
   // We use PostCSS for autoprefixing only.
-  postcss: function postcss() {
+  postcss: function() {
     return [
       autoprefixer({
         browsers: [
@@ -200,7 +200,7 @@ module.exports = {
           'last 4 versions',
           'Firefox ESR',
           'not ie < 9', // React doesn't support IE8 anyway
-        ],
+        ]
       }),
     ];
   },
@@ -209,7 +209,7 @@ module.exports = {
     // <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
     // In development, this will be an empty string.
     new InterpolateHtmlPlugin({
-      PUBLIC_URL: publicUrl,
+      PUBLIC_URL: publicUrl
     }),
     // Generates an `index.html` file with the <script> injected.
     new HtmlWebpackPlugin({
@@ -229,13 +229,13 @@ module.exports = {
     // to restart the development server for Webpack to discover it. This plugin
     // makes the discovery automatic so you don't have to restart.
     // See https://github.com/facebookincubator/create-react-app/issues/186
-    new WatchMissingNodeModulesPlugin(paths.appNodeModules),
+    new WatchMissingNodeModulesPlugin(paths.appNodeModules)
   ],
   // Some libraries import Node modules but don't use them in the browser.
   // Tell Webpack to provide empty mocks for them so importing them works.
   node: {
     fs: 'empty',
     net: 'empty',
-    tls: 'empty',
-  },
+    tls: 'empty'
+  }
 };
