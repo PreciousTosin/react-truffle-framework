@@ -1,4 +1,4 @@
-/* eslint import/no-extraneous-dependencies: 'off', consistent-return: off */
+/* eslint import/no-extraneous-dependencies: 'off', consistent-return: off, no-alert: 'off' */
 import AuthenticationContract from '../../../../build/contracts/Authentication.json';
 import store from '../../../store';
 

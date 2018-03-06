@@ -1,4 +1,4 @@
-/* eslint react/prop-types: 'off' */
+/* eslint react/prop-types: 'off', no-alert: 'off' */
 import React, { Component } from 'react';
 
 class SignUpForm extends Component {

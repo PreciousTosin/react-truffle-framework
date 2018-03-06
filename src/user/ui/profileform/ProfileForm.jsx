@@ -1,4 +1,4 @@
-/* eslint react/prop-types: 'off', jsx-a11y/label-has-for: 'off' */
+/* eslint react/prop-types: 'off', jsx-a11y/label-has-for: 'off', no-alert: 'off' */
 import React, { Component } from 'react';
 
 class ProfileForm extends Component {
