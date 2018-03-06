@@ -1,4 +1,4 @@
-pragma solidity ^0.4.4;
+pragma solidity ^0.4.18; // solhint-disable-line
 
 
 import "./../ownership/Ownable.sol";
@@ -9,7 +9,7 @@ import "./../ownership/Ownable.sol";
  * Base contract that can be killed by owner. All funds in contract will be sent to the owner.
  */
 contract Killable is Ownable {
-  function kill() onlyOwner {
-    selfdestruct(owner);
-  }
+    function kill() onlyOwner {
+        selfdestruct(owner);
+    }
 }
