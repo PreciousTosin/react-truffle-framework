@@ -1,9 +1,11 @@
 /* eslint import/no-extraneous-dependencies: 'off', consistent-return: 'off' */
-import { browserHistory } from 'react-router';
+// import { browserHistory } from 'react-router';
+import { push } from 'react-router-redux';
 import AuthenticationContract from '../../../../build/contracts/Authentication.json';
-import store from '../../../store';
+import store, { history } from '../../../store';
 
 const contract = require('truffle-contract');
+const queryString = require('query-string');
 
 export const USER_LOGGED_IN = 'USER_LOGGED_IN';
 function userLoggedIn(user) {
@@ -46,19 +48,30 @@ export function loginUser() {
 
               // Used a manual redirect here as opposed to a wrapper.
               // This way, once logged in a user can still access the home page.
-              const currentLocation = browserHistory.getCurrentLocation();
+              const currentLocation = history.location;
+              console.log(currentLocation);
 
-              if ('redirect' in currentLocation.query) {
+              /* if ('redirect' in currentLocation.query) {
                 return browserHistory.push(decodeURIComponent(currentLocation.query.redirect));
+              } */
+
+              if ('search' in currentLocation) {
+                console.log('REDIRECT FOUND!!');
+                const parsed = queryString.parse(currentLocation.search);
+                console.log(parsed);
+                // return store.dispatch(push(parsed.redirect));
               }
 
-              return browserHistory.push('/dashboard');
+              // return browserHistory.push('/dashboard');
+              return store.dispatch(push('/dashboard'));
             })
-            .catch(() => {
+            .catch((err) => {
             // If error, go to signup page.
-              console.error(`Wallet ${coinbase} does not have an account!`);
+              // console.error(`Wallet ${coinbase} does not have an account!`);
+              console.log(err);
 
-              return browserHistory.push('/signup');
+              // return browserHistory.push('/signup');
+              return store.dispatch(push('/signup'));
             });
         });
       });

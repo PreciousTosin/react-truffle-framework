@@ -19,7 +19,8 @@ const checkRequiredFiles = require('react-dev-utils/checkRequiredFiles');
 const formatWebpackMessages = require('react-dev-utils/formatWebpackMessages');
 const getProcessForPort = require('react-dev-utils/getProcessForPort');
 const openBrowser = require('react-dev-utils/openBrowser');
-const prompt = require('react-dev-utils/prompt');
+// const prompt = require('react-dev-utils/prompt');
+const inquirer = require('inquirer');
 const pathExists = require('path-exists');
 const config = require('../config/webpack.config.dev');
 const paths = require('../config/paths');
@@ -301,11 +302,18 @@ detect(DEFAULT_PORT).then((port) => {
         (existingProcess) ? ` Probably:\n  ${existingProcess}` : ''}`)
       }\n\nWould you like to run the app on another port instead?`;
 
-    prompt(question, true).then((shouldChangePort) => {
-      if (shouldChangePort) {
-        run(port);
-      }
-    });
+    inquirer
+      .prompt({
+        type: 'confirm',
+        name: 'shouldChangePort',
+        message: question,
+        default: true,
+      })
+      .then((answer) => {
+        if (answer.shouldChangePort) {
+          run(port);
+        }
+      });
   } else {
     console.log(chalk.red(`Something is already running on port ${DEFAULT_PORT}.`));
   }

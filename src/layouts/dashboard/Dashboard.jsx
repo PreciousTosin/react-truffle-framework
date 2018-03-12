@@ -1,11 +1,12 @@
 /* eslint react/prop-types: 'off', react/no-unescaped-entities: 'off',
 no-param-reassign: 'off', no-unused-vars: 'off' */
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 class Dashboard extends Component {
-  constructor(props, { authData }) {
+  constructor(props) {
     super(props);
-    authData = this.props;
+    this.authData = this.props.authData;
   }
 
   render() {
@@ -26,4 +27,5 @@ class Dashboard extends Component {
   }
 }
 
-export default Dashboard;
+// export default Dashboard;
+export default connect(state => ({ authData: state.user.data }))(Dashboard);
