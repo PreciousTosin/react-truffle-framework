@@ -5,7 +5,7 @@ module.exports = {
   process() {
     return 'module.exports = {};';
   },
-  getCacheKey(fileData, filename) {
+  getCacheKey(fileData, filename) { /* eslint no-unused-vars: 'off' */
     // The output is always the same.
     return 'cssTransform';
   },
