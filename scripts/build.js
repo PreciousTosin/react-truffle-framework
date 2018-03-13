@@ -76,8 +76,7 @@ function printFileSizes(stats, previousSizeMap) {
     let sizeLabel = asset.sizeLabel;
     const sizeLength = stripAnsi(sizeLabel).length;
     if (sizeLength < longestSizeLabelLength) {
-      const rightPadding = ' '.repeat(longestSizeLabelLength - sizeLength);
-      sizeLabel += rightPadding;
+      sizeLabel += ' '.repeat(longestSizeLabelLength - sizeLength);
     }
     console.log(`  ${sizeLabel
     }  ${chalk.dim(asset.folder + path.sep)}${chalk.cyan(asset.name)}`);
